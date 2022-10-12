@@ -39,6 +39,11 @@ ENV KUBE_CROSSPLATFORMS \
   darwin/amd64 darwin/386 \
   windows/amd64 windows/386
 
+ENV GOEXPERIMENT opensslcrypto 
+ENV CGO_ENABLED 1 
+ENV GOOS linux
+ENV GOARCH amd64
+
 ##------------------------------------------------------------
 
 # Install packages
