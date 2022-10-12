@@ -41,13 +41,6 @@ ENV KUBE_CROSSPLATFORMS \
 
 ##------------------------------------------------------------
 
-# Pre-compile the standard go library when cross-compiling. This is much easier now when we have go1.5+
-RUN targetArch=$(echo $TARGETPLATFORM | cut -f2 -d '/') \
-    && if [ ${targetArch} = "amd64" ]; then \
-    for platform in ${KUBE_CROSSPLATFORMS}; do GOOS=${platform%/*} GOARCH=${platform##*/} go install std; done \
-    && go clean -cache; \
-fi
-
 # Install packages
 RUN apt-get -q update \
     && apt-get install -qqy \
